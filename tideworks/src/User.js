@@ -1,14 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class User extends React.Component {
-    render() {
-        return (
-            <div>
-                First Name: {this.prop.firstName}
-                Last Name: {this.prop.lastName}
-            </div>
-        )
-    }
+function User({user, deleteUser}) {
+    return (
+        <div>
+            <button onClick={() => deleteUser(user.id)}>Delete</button>
+            First Name: {user.firstName}&nbsp;
+            Last Name: {user.lastName}
+        </div>
+    )
+}
+
+User.propTypes = {
+    user: PropTypes.object.isRequired,
+    deleteUser: PropTypes.func.isRequired
 }
 
 export default User;

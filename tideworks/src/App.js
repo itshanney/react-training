@@ -1,22 +1,55 @@
 import React, { Component } from 'react';
 import HelloWorld from './HelloWorld';
 import ContactForm from "./ContactForm";
-import logo from './logo.svg';
+import AddUser from "./AddUser";
+import User from "./User";
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [
+        {
+          id: 1,
+          firstName: 'Cory',
+          lastName: 'House'
+        },
+        {
+          id: 2,
+          firstName: 'Justin',
+          lastName: 'Hanney'
+        }
+      ]
+    }
+  }
+
+  deleteUser = (id) => {
+    const users = this.state.users.filter(user => user.id !== id);
+    this.setState({users: users});
+  }
+
+  saveUser = (user) => {
+    if(!user.id) {
+      user.id = Math.random();
+    }
+    console.log(user);
+    const users = [...this.state.users, user];
+    this.setState({users: users});
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <HelloWorld firstName="Justin"/>
+        <HelloWorld />
         <ContactForm/>
+
+        { this.state.users.map( user => <User key={user.id} user={user} deleteUser={this.deleteUser} />) }
+
+        <h1>Add User</h1>
+
+        <AddUser save={this.saveUser} />
+
       </div>
     );
   }

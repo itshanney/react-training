@@ -17,8 +17,8 @@ class ContactForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log('name:    ' + this.state.name);
-        console.log('message: ' + this.state.message);
+        console.log(`name:    ${this.state.name}`);
+        console.log(`message: ${this.state.message}`);
     }
 
     render() {

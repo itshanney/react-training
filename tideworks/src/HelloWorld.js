@@ -12,4 +12,8 @@ HelloWorld.propTypes = {
     middleName: PropTypes.string
 };
 
+HelloWorld.defaultProps = {
+    firstName: 'World'
+}
+
 export default HelloWorld;
