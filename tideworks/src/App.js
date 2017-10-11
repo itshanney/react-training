@@ -29,6 +29,11 @@ class App extends Component {
     this.setState({users: users});
   }
 
+  editUser = (id) => {
+    const user = this.state.users.filter(user => user.id !== id);
+    console.log(user);
+  }
+
   saveUser = (user) => {
     if(!user.id) {
       user.id = Math.random();
@@ -44,7 +49,7 @@ class App extends Component {
         <HelloWorld />
         <ContactForm/>
 
-        { this.state.users.map( user => <User key={user.id} user={user} deleteUser={this.deleteUser} />) }
+        { this.state.users.map( user => <User key={user.id} user={user} deleteUser={this.deleteUser} editUser={this.editUser} />) }
 
         <h1>Add User</h1>
 
